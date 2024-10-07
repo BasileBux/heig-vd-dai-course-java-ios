@@ -1,0 +1,24 @@
+services:
+  writer:
+    image: ghcr.io/basilebux/java-ios-docker
+    command:
+      [
+        "--implementation=BUFFERED_BINARY",
+        "/data/100-bytes.bin",
+        "write",
+        "--size=100",
+      ]
+    volumes:
+      - .:/data
+
+  reader:
+    image: ghcr.io/basilebux/java-ios-docker
+    # Command can be written in a single line as an array or as a list (as here)
+    command:
+      [
+        "--implementation=BUFFERED_BINARY",
+        "/data/100-bytes.bin",
+        "read"
+      ]
+    volumes:
+      - .:/data
